@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+
 import defaultCard from "../assets/imgs/credit-card.svg";
 import visa from "../assets/imgs/visa.svg";
 import master from "../assets/imgs/mastercard.svg";
@@ -78,8 +79,8 @@ class PaymentForm extends Component {
     console.log(this.state);
     const isValid = this.validate();
     if (isValid) {
-      console.log("Vaid inputs");
       this.setState(initState);
+      this.props.history.push("/processing");
     } else {
       console.log("Invalid inputs");
     }
@@ -96,23 +97,16 @@ class PaymentForm extends Component {
     const isDisc = discPattern.test(ccNum) === true;
 
     if (isVisa || isMast || isAmex || isDisc) {
-      // at least one regex matches, so the card number is valid.
-      console.log("Card Match");
       if (isVisa) {
-        // Visa-specific logic goes here
         this.setState({ cardType: visa });
       } else if (isMast) {
-        // Mastercard-specific logic goes here
         this.setState({ cardType: master });
       } else if (isAmex) {
-        // AMEX-specific logic goes here
         this.setState({ cardType: amex });
       } else if (isDisc) {
-        // Discover-specific logic goes here
         this.setState({ cardType: disc });
       }
     } else {
-      // alert("Please enter a valid card number.");
       this.setState({ cardType: defaultCard });
       return false;
     }

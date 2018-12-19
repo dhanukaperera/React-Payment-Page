@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
+import { BrowserRouter, Route } from "react-router-dom";
 import "./App.css";
 import NavBar from "./components/app-title";
 import PaymentForm from "./components/payment-form";
+import PaymentProcessing from "./components/payment-processing";
 class App extends Component {
   render() {
     return (
@@ -10,7 +11,12 @@ class App extends Component {
         <NavBar />
         <section className="section">
           <div className="container" />
-          <PaymentForm />
+          <BrowserRouter>
+            <div>
+              <Route path="/" component={PaymentForm} exact />
+              <Route path="/processing" component={PaymentProcessing} />
+            </div>
+          </BrowserRouter>
         </section>
       </div>
     );
