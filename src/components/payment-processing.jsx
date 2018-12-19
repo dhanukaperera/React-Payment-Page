@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import loading from "../assets/imgs/3.gif";
+import loading from "../assets/imgs/loading.gif";
 class PaymentProcessing extends Component {
   state = {};
   render() {
@@ -9,7 +9,10 @@ class PaymentProcessing extends Component {
           <div class="container">
             <div class="columns">
               <div class="column is-1">
-                <img style={{ width: "48px" }} src={loading} />
+                <img
+                  style={{ width: "48px", marginLeft: "36px" }}
+                  src={loading}
+                />
               </div>
               <div class="column">
                 <h1 class="title">Payment is Processing</h1>
