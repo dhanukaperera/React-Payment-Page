@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 
+// Import crad images
 import defaultCard from "../assets/imgs/credit-card.svg";
 import visa from "../assets/imgs/visa.svg";
 import master from "../assets/imgs/mastercard.svg";
@@ -11,6 +12,7 @@ const divStyle = {
   margin: "auto"
 };
 
+// init state
 const initState = {
   name: "",
   cardno: "",
@@ -51,9 +53,6 @@ const initState = {
   ]
 };
 
-const errorMessages = {};
-const namePattern = /^[a-zA-Z\-'\s]+/;
-
 class PaymentForm extends Component {
   constructor(props) {
     super(props);
@@ -71,21 +70,23 @@ class PaymentForm extends Component {
   }
 
   handleFormSubmitEvent = () => {
-    console.log(this.state);
     const isValid = this.validate();
     if (isValid) {
       this.setState(initState);
       this.props.history.push("/processing");
-    } else {
-      console.log("Invalid inputs");
     }
   };
 
+  // Validate the input name
   validateName = inputName => {
+    // Regex to match name pattern
+    const namePattern = /^[a-zA-Z\-'\s]+/;
     return namePattern.test(inputName) === true;
   };
 
+  // Validate the credit card no
   validateCreditCardNumber = ccNum => {
+    // Regex to match card type
     const visaPattern = /^(?:4[0-9]{12}(?:[0-9]{3})?)$/;
     const mastPattern = /^(?:5[1-5][0-9]{14})$/;
     const amexPattern = /^(?:3[47][0-9]{13})$/;
@@ -118,6 +119,7 @@ class PaymentForm extends Component {
     this.validateCreditCardNumber(this.state.cardno);
   };
 
+  // Validate the form
   validate = () => {
     console.log("I reborn!!!");
     let nameError = "";
